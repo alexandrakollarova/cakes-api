@@ -37,6 +37,21 @@ cakesRouter
 		res.json(cake) 
 		next()
 	})
+
+	//  DELETE /cakes/{id}
+	.delete((req, res, next) => {
+		let { cake_id } = req.params;
+		let cakes = SampleCakes.filter(cake => cake.id != cake_id);
+
+		if (!cake_id) {
+			return res.status(404).json({
+				error: { message: `Cake with id ${cake_id} doesn't exist` }
+			})
+		}
+
+		res.json(cakes)
+		next()
+	})
 	
 	
 module.exports = cakesRouter
