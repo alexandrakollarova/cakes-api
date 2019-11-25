@@ -9,6 +9,18 @@ cakesRouter
   .get((req, res) => {    
     res.json(SampleCakes)
 	})
+
+// POST /cakes
+.post((req, res) => {     
+	const { id, name, comment, imageUrl, yumFactor } = req.body        
+	const newCake = { id, name, comment, imageUrl, yumFactor }
+				
+	SampleCakes = SampleCakes.concat(newCake) 
+		
+	res
+		.status(201)
+		.json(newCake)       
+	})
 	
 //  GET /cakes/{id}   
 cakesRouter
